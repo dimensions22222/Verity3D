@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f2ec">
+  <meta name="description" content="Verity3D builds tactile 3D product pages and ready-to-customize storefront templates.">
+  <meta property="og:title" content="Verity3D — Make the product impossible to scroll past">
+  <meta property="og:description" content="Interactive product pages and 3D storefront templates, made with care.">
+  <title>Verity3D — Make the product impossible to scroll past</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.166.1/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.166.1/examples/jsm/"
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+  <script type="module" src="3d-viewer.js"></script>
+</head>
+<body>
+  <div class="topline">BLACK FRIDAY / <strong>THE STUDIO SALE IS ON</strong> <span aria-hidden="true">·</span> ENDS NOV 30, 2026 <a href="#templates">Shop the templates</a></div>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="Verity3D home">- Verity3D</a>
+      <nav class="navlinks" id="navlinks" aria-label="Main navigation">
+        <a href="#templates">Templates</a><a href="#services">Services</a><a href="#process">How it works</a><a href="#about">About</a>
+      </nav>
+      <a class="nav-cta" href="#services">Start a project <span aria-hidden="true">↗</span></a>
+      <button class="menu" id="menu" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navlinks">☰</button>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="wrap hero">
+      <div class="hero-copy-block">
+        <h1>Make your product <span class="headline-mark">impossible</span> to scroll past.</h1>
+        <p class="hero-copy">We build interactive product pages for things worth looking at. Start with a ready-to-customize template, or ask us to shape a page around your product.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#services">Order a 3D page <span aria-hidden="true">↗</span></a>
+          <a class="button button-light" href="#templates">Browse templates <span aria-hidden="true">↓</span></a>
+        </div>
+        <p class="hero-note">Built by hand. Made to move.</p>
+      </div>
+      <div class="model-stage" id="modelStage">
+        <div class="model-caption"><span>01 / Product study</span><span>VEL—001</span></div>
+        <canvas id="product-canvas" aria-label="Interactive 3D model of the Moon"></canvas>
+        <div class="model-fallback" id="modelFallback">
+          <div class="moon-shape" aria-hidden="true"></div>
+          <p>Preparing the interactive Moon model…</p>
+        </div>
+        <div class="model-footer">
+          <span id="modelStatus" role="status">Preparing 3D preview</span>
+          <button class="spin-toggle" id="spinToggle" type="button" aria-pressed="true">Pause rotation</button>
+        </div>
+        <span class="model-stamp">A closer look<br>changes everything</span>
+      </div>
+    </section>
+
+    <div class="ticker" aria-label="Verity3D studio principles"><div class="ticker-track">Built to be explored <span>✳</span> Made for the curious <span>✳</span> Product first, always <span>✳</span> Built to be explored <span>✳</span> Made for the curious <span>✳</span> Product first, always <span>✳</span></div></div>
+
+    <section class="wrap section" id="templates">
+      <div class="section-head">
+        <div><p class="eyebrow">The little shop</p><h2>Start with a<br>good first look.</h2></div>
+        <p class="section-intro">A growing shelf of 3D web templates. Get the project files, swap in your product, and publish. One purchase, yours to customize.</p>
+      </div>
+      <div class="filterbar" role="group" aria-label="Filter templates">
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">All work</button>
+        <button class="filter" type="button" data-filter="sale" aria-pressed="false">Sale pages</button>
+        <button class="filter" type="button" data-filter="fashion" aria-pressed="false">Fashion</button>
+        <button class="filter" type="button" data-filter="tech" aria-pressed="false">Tech</button>
+        <button class="filter" type="button" data-filter="portfolio" aria-pressed="false">Portfolio</button>
+      </div>
+      <div class="product-grid" id="productGrid" aria-live="polite"></div>
+      <p class="subnote">Instant digital delivery · Checkout and demo links are configured before launch.</p>
+    </section>
+
+    <section class="service-section" id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <div><p class="eyebrow">Made for your brand</p><h2>Not a template?<br>We can make it.</h2></div>
+          <p class="section-intro">A bespoke product page, designed around what you sell. Send us your product, and we’ll shape the experience around it.</p>
+        </div>
+        <div class="service-grid">
+          <article class="tier tier-entrepreneur"><p class="tier-label">01 / For a first launch</p><h3>Entrepreneur</h3><p class="tier-price">₦4,999 <small>from</small></p><p>A simple online starting point for a new business.</p><ul><li>One mobile-friendly landing page</li><li>Business or product introduction</li><li>Click-to-WhatsApp contact link</li><li>One revision round</li></ul><a class="button button-light wa-link" data-tier="Entrepreneur" href="#contact">Ask about Entrepreneur <span aria-hidden="true">↗</span></a></article>
+          <article class="tier"><p class="tier-label">02 / The essentials</p><h3>Starter</h3><p class="tier-price">₦50k <small>from</small></p><p>A focused, polished first look for one product.</p><ul><li>One responsive product page</li><li>Interactive 3D viewer</li><li>WhatsApp contact button</li><li>One revision round</li></ul><a class="button button-light wa-link" data-tier="Starter" href="#contact">Ask about Starter <span aria-hidden="true">↗</span></a></article>
+          <article class="tier tier-featured"><p class="tier-label">03 / Most requested</p><h3>Pro</h3><p class="tier-price">₦100k <small>from</small></p><p>More room to tell the story across your range.</p><ul><li>Up to three product views</li><li>Extra story and feature sections</li><li>3D motion and detail interactions</li><li>Two revision rounds</li></ul><a class="button button-dark wa-link" data-tier="Pro" href="#contact">Ask about Pro <span aria-hidden="true">↗</span></a></article>
+          <article class="tier"><p class="tier-label">04 / The full treatment</p><h3>Premium</h3><p class="tier-price">₦150k <small>from</small></p><p>A signature launch page with a custom feel.</p><ul><li>Custom interaction and animation</li><li>Simple product model made in Blender</li><li>Launch-ready responsive page</li><li>Three revision rounds</li></ul><a class="button button-light wa-link" data-tier="Premium" href="#contact">Ask about Premium <span aria-hidden="true">↗</span></a></article>
+        </div>
+        <p class="subnote service-note">Entrepreneur projects start at ₦4,999; the final quote depends on your requirements. Domain, hosting, copywriting, and additional features are not included.</p>
+      </div>
+    </section>
+
+    <section class="wrap section" id="process">
+      <div class="section-head">
+        <div><p class="eyebrow">A clear process</p><h2>From product<br>to presence.</h2></div>
+        <p class="section-intro">No mystery process. We keep the work focused, collaborative, and ready for the real world.</p>
+      </div>
+      <div class="steps">
+        <article class="step"><p class="step-no">01 / Share</p><h3>Tell us what you sell</h3><p>Send product details, photos, brand references, and any existing 3D model you own.</p></article>
+        <article class="step"><p class="step-no">02 / Shape</p><h3>We build the experience</h3><p>We create the page around the product, with a review point before final polish.</p></article>
+        <article class="step"><p class="step-no">03 / Launch</p><h3>Put it to work</h3><p>Receive the finished page and launch notes, or publish your customized template.</p></article>
+      </div>
+    </section>
+
+    <div class="wrap sale-strip">
+      <div><p class="eyebrow">November studio sale</p><h2>Good work, a little less.</h2><p>Template prices are marked down through November 30, 2026, Lagos time.</p></div>
+      <div class="countdown" aria-label="Countdown to sale end"><div><b id="days">--</b><span>Days</span></div><div><b id="hours">--</b><span>Hours</span></div><div><b id="minutes">--</b><span>Minutes</span></div><div><b id="seconds">--</b><span>Seconds</span></div></div>
+    </div>
+
+    <section class="wrap section" id="faq">
+      <div class="section-head"><div><p class="eyebrow">A few good questions</p><h2>Before we begin.</h2></div></div>
+      <div class="faq-list">
+        <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span>Do I need to have a 3D model already?</span><span class="faq-symbol" aria-hidden="true">+</span></button><div class="faq-answer"><p>Not always. For Starter and Pro, you can provide product photography or a model you have the rights to use. Premium includes a simple model made in Blender, subject to the product’s complexity.</p></div></article>
+        <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span>What do I receive when I buy a template?</span><span class="faq-symbol" aria-hidden="true">+</span></button><div class="faq-answer"><p>A downloadable project package with source code and a README. Models in templates must be made by us, licensed for redistribution, or released under a compatible public license.</p></div></article>
+        <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span>Can I use a template for client work?</span><span class="faq-symbol" aria-hidden="true">+</span></button><div class="faq-answer"><p>The final license terms will be shown at checkout. We’ll state clearly whether the license covers personal projects, commercial sites, and client work.</p></div></article>
+        <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span>How do I pay for a custom page?</span><span class="faq-symbol" aria-hidden="true">+</span></button><div class="faq-answer"><p>Use the WhatsApp enquiry link to discuss scope and payment arrangements. Template purchases use an external hosted checkout, not a custom payment form on this site.</p></div></article>
+        <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span>Where do the product models come from?</span><span class="faq-symbol" aria-hidden="true">+</span></button><div class="faq-answer"><p>Templates ship only with models we made, public-domain or CC0 models, or assets whose license clearly permits redistribution. Client-supplied models are never repackaged for resale.</p></div></article>
+      </div>
+    </section>
+
+    <section class="wrap about-section" id="about">
+      <div><p class="eyebrow">Your developer</p><h2>ALEXANDER AYOMIDE.</h2><p class="about-role">Frontend &amp; Mobile Application Developer<br>Computer Science undergraduate · Lagos, Nigeria</p></div>
+      <div class="about-details"><p>ALEXANDER AYOMIDE builds responsive web interfaces and Flutter apps, with practical internship experience at MEMMCOL and EPAIL Nigeria.</p><p class="about-skills">HTML · CSS · JavaScript · Flutter · Dart · Node.js · REST APIs</p><div class="about-contact"><a href="mailto:oluomodarataiwo@gmail.com">oluomodarataiwo@gmail.com</a><a href="tel:+2349031415386">+234 903 141 5386</a></div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="wrap">
+      <div class="footer-main">
+        <div><a class="brand footer-brand" href="#home">- Verity3D</a><p>Interactive 3D product pages and digital templates.<br>Made in Lagos, Nigeria.</p></div>
+        <div class="footer-col"><h2>Explore</h2><a href="#templates">Templates</a><a href="#services">Custom services</a><a href="#faq">FAQ</a></div>
+        <div class="footer-col"><h2>Say hello</h2><a class="wa-link" data-tier="a project" href="#contact">WhatsApp ↗</a><a href="mailto:oluomodarataiwo@gmail.com">oluomodarataiwo@gmail.com</a><a href="tel:+2349031415386">+234 903 141 5386</a></div>
+      </div>
+      <div class="credits"><span>© <span id="year"></span> Verity3D. All rights reserved.</span><span>Hero model: Moon GLB from the supplied workspace asset.</span></div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
