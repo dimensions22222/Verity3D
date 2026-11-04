@@ -5,12 +5,12 @@ const siteConfig = {
 };
 
 const products = [
-  { id: "black-friday", title: "Black Friday / Objects", price: "$19", was: "$29", description: "A sale page that puts the product before the discount.", tags: ["sale", "fashion"], kind: "shoe", number: "01" },
-  { id: "sneaker-study", title: "The Sneaker Study", price: "$24", was: "$34", description: "A product hero made for a shoe worth noticing.", tags: ["fashion"], kind: "shoe", number: "02" },
+  { id: "black-friday", title: "Black Friday / Objects", price: "$19", was: "$29", description: "A sale page that puts the product before the discount.", tags: ["sale", "fashion"], kind: "shoe", number: "01", animation: "template%20assets%20on%20hover/Black%20Friday%20Deals%20ball.lottie" },
+  { id: "sneaker-study", title: "The Sneaker Study", price: "$24", was: "$34", description: "A product hero made for a shoe worth noticing.", tags: ["fashion"], kind: "shoe", number: "02", animation: "template%20assets%20on%20hover/Sneaker.lottie" },
   { id: "time-piece", title: "Time / Piece", price: "$24", was: "$34", description: "A quiet product page for a watch or accessory.", tags: ["fashion"], kind: "watch", number: "03" },
-  { id: "sound-object", title: "Sound Object", price: "$24", was: "$34", description: "A tactile tech showcase for audio and everyday objects.", tags: ["tech"], kind: "headphones", number: "04" },
-  { id: "folio-hero", title: "Folio / Motion", price: "$15", was: "$22", description: "An expressive 3D opening for a creative portfolio.", tags: ["portfolio"], kind: "camera", number: "05" },
-  { id: "gift-study", title: "Gift Study", price: "$19", was: "$29", description: "A seasonal product story with room for a personal note.", tags: ["sale", "fashion"], kind: "gift", number: "06" }
+  { id: "sound-object", title: "Sound Object", price: "$24", was: "$34", description: "A tactile tech showcase for audio and everyday objects.", tags: ["tech"], kind: "headphones", number: "04", animation: "template%20assets%20on%20hover/headphone%20playing%20music%20(1).lottie" },
+  { id: "folio-hero", title: "Folio / Motion", price: "$15", was: "$22", description: "An expressive 3D opening for a creative portfolio.", tags: ["portfolio"], kind: "camera", number: "05", animation: "template%20assets%20on%20hover/Folio%20%20Motion.lottie" },
+  { id: "gift-study", title: "Gift Study", price: "$19", was: "$29", description: "A seasonal product story with room for a personal note.", tags: ["sale", "fashion"], kind: "gift", number: "06", animation: "template%20assets%20on%20hover/gift%20study.lottie" }
 ];
 
 const glyphs = {
@@ -32,14 +32,57 @@ function showToast(message) {
   toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 4500);
 }
 
+function setupHoverAnimation(host) {
+  const player = host.querySelector(".product-hover-animation");
+  if (!player) return;
+
+  let isHovered = false;
+  let isFocused = false;
+  const syncPlayback = () => {
+    if (!host.classList.contains("is-animation-ready")) return;
+    if (isHovered || isFocused) {
+      player.play();
+    } else {
+      player.stop();
+    }
+  };
+
+  player.addEventListener("ready", () => {
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      host.classList.add("is-animation-ready");
+      syncPlayback();
+    }
+  }, { once: true });
+
+  host.addEventListener("pointerenter", () => {
+    isHovered = true;
+    syncPlayback();
+  });
+  host.addEventListener("pointerleave", () => {
+    isHovered = false;
+    syncPlayback();
+  });
+  host.addEventListener("focusin", () => {
+    isFocused = true;
+    syncPlayback();
+  });
+  host.addEventListener("focusout", event => {
+    if (!host.contains(event.relatedTarget)) {
+      isFocused = false;
+      syncPlayback();
+    }
+  });
+}
+
 function renderProducts(filter = "all") {
   const visibleProducts = products.filter(product => filter === "all" || product.tags.includes(filter));
   productGrid.innerHTML = visibleProducts.map(product => `
     <article class="product-card">
-      <div class="product-art">
+      <div class="product-art hover-animation-host">
         <span class="art-number">V / ${product.number}</span>
         <span class="art-kind">${product.tags[0]}</span>
         ${glyphs[product.kind]}
+        ${product.animation ? `<dotlottie-player class="product-hover-animation" src="${product.animation}" background="transparent" loop aria-hidden="true"></dotlottie-player>` : ""}
         ${siteConfig.saleEnabled ? '<span class="sale-tag">STUDIO SALE</span>' : ""}
       </div>
       <div class="product-body">
@@ -52,9 +95,15 @@ function renderProducts(filter = "all") {
         </div>
       </div>
     </article>`).join("");
+
+  productGrid.querySelectorAll(".product-card").forEach(card => {
+    const host = card.querySelector(".hover-animation-host");
+    if (host) setupHoverAnimation(host);
+  });
 }
 
 renderProducts();
+document.querySelectorAll(".about-skills").forEach(setupHoverAnimation);
 
 document.querySelector(".filterbar").addEventListener("click", event => {
   const button = event.target.closest("[data-filter]");
@@ -137,3 +186,16 @@ spinToggle.addEventListener("click", () => {
   spinToggle.textContent = isSpinning ? "Resume rotation" : "Pause rotation";
   window.dispatchEvent(new CustomEvent("velox-spin-change", { detail: { isSpinning: !isSpinning } }));
 });
+
+const revealSections = document.querySelectorAll(".scroll-reveal");
+if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  document.documentElement.classList.add("has-scroll-reveal");
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      revealObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.12 });
+  revealSections.forEach(section => revealObserver.observe(section));
+}

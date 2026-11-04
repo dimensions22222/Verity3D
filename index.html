@@ -21,6 +21,10 @@
   </script>
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
+  <script src="shimeji.js" defer></script>
+  <script src="music.js" defer></script>
+  <script src="cursor.js" defer></script>
+  <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
   <script type="module" src="3d-viewer.js"></script>
 </head>
 <body>
@@ -32,12 +36,16 @@
         <a href="#templates">Templates</a><a href="#services">Services</a><a href="#process">How it works</a><a href="#about">About</a>
       </nav>
       <a class="nav-cta" href="#services">Start a project <span aria-hidden="true">↗</span></a>
+      <button class="shimeji-box-button" id="shimejiToggle" type="button" aria-controls="shimejiWorld" aria-expanded="true" aria-label="Tuck Chance away">
+        <span class="shimeji-box-icon" aria-hidden="true"><img src="interactable%20shimeji/sprites/0000.webp" alt=""></span>
+        <span class="shimeji-box-label">Put away</span>
+      </button>
       <button class="menu" id="menu" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navlinks">☰</button>
     </div>
   </header>
 
   <main id="home">
-    <section class="wrap hero">
+    <section class="wrap hero scroll-reveal">
       <div class="hero-copy-block">
         <h1>Make your product <span class="headline-mark">impossible</span> to scroll past.</h1>
         <p class="hero-copy">We build interactive product pages for things worth looking at. Start with a ready-to-customize template, or ask us to shape a page around your product.</p>
@@ -62,9 +70,9 @@
       </div>
     </section>
 
-    <div class="ticker" aria-label="Verity3D studio principles"><div class="ticker-track">Built to be explored <span>✳</span> Made for the curious <span>✳</span> Product first, always <span>✳</span> Built to be explored <span>✳</span> Made for the curious <span>✳</span> Product first, always <span>✳</span></div></div>
+    <div class="ticker scroll-reveal" aria-label="Verity3D studio principles"><div class="ticker-track">Built to be explored <span>✳</span> Made for the curious <span>✳</span> Product first, always <span>✳</span> Built to be explored <span>✳</span> Made for the curious <span>✳</span> Product first, always <span>✳</span></div></div>
 
-    <section class="wrap section" id="templates">
+    <section class="wrap section scroll-reveal" id="templates">
       <div class="section-head">
         <div><p class="eyebrow">The little shop</p><h2>Start with a<br>good first look.</h2></div>
         <p class="section-intro">A growing shelf of 3D web templates. Get the project files, swap in your product, and publish. One purchase, yours to customize.</p>
@@ -80,7 +88,7 @@
       <p class="subnote">Instant digital delivery · Checkout and demo links are configured before launch.</p>
     </section>
 
-    <section class="service-section" id="services">
+    <section class="service-section scroll-reveal" id="services">
       <div class="wrap">
         <div class="section-head">
           <div><p class="eyebrow">Made for your brand</p><h2>Not a template?<br>We can make it.</h2></div>
@@ -96,7 +104,7 @@
       </div>
     </section>
 
-    <section class="wrap section" id="process">
+    <section class="wrap section scroll-reveal" id="process">
       <div class="section-head">
         <div><p class="eyebrow">A clear process</p><h2>From product<br>to presence.</h2></div>
         <p class="section-intro">No mystery process. We keep the work focused, collaborative, and ready for the real world.</p>
@@ -108,12 +116,12 @@
       </div>
     </section>
 
-    <div class="wrap sale-strip">
+    <div class="wrap sale-strip scroll-reveal">
       <div><p class="eyebrow">November studio sale</p><h2>Good work, a little less.</h2><p>Template prices are marked down through November 30, 2026, Lagos time.</p></div>
       <div class="countdown" aria-label="Countdown to sale end"><div><b id="days">--</b><span>Days</span></div><div><b id="hours">--</b><span>Hours</span></div><div><b id="minutes">--</b><span>Minutes</span></div><div><b id="seconds">--</b><span>Seconds</span></div></div>
     </div>
 
-    <section class="wrap section" id="faq">
+    <section class="wrap section scroll-reveal" id="faq">
       <div class="section-head"><div><p class="eyebrow">A few good questions</p><h2>Before we begin.</h2></div></div>
       <div class="faq-list">
         <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span>Do I need to have a 3D model already?</span><span class="faq-symbol" aria-hidden="true">+</span></button><div class="faq-answer"><p>Not always. For Starter and Pro, you can provide product photography or a model you have the rights to use. Premium includes a simple model made in Blender, subject to the product’s complexity.</p></div></article>
@@ -124,9 +132,9 @@
       </div>
     </section>
 
-    <section class="wrap about-section" id="about">
+    <section class="wrap about-section scroll-reveal" id="about">
       <div><p class="eyebrow">Your developer</p><h2>ALEXANDER AYOMIDE.</h2><p class="about-role">Frontend &amp; Mobile Application Developer<br>Computer Science undergraduate · Lagos, Nigeria</p></div>
-      <div class="about-details"><p>ALEXANDER AYOMIDE builds responsive web interfaces and Flutter apps, with practical internship experience at MEMMCOL and EPAIL Nigeria.</p><p class="about-skills">HTML · CSS · JavaScript · Flutter · Dart · Node.js · REST APIs</p><div class="about-contact"><a href="mailto:oluomodarataiwo@gmail.com">oluomodarataiwo@gmail.com</a><a href="tel:+2349031415386">+234 903 141 5386</a></div></div>
+      <div class="about-details"><p>ALEXANDER AYOMIDE builds responsive web interfaces and Flutter apps, with practical internship experience at MEMMCOL and EPAIL Nigeria.</p><p class="about-skills hover-animation-host"><span>HTML · CSS · JavaScript · Flutter · Dart · Node.js · REST APIs</span><dotlottie-player class="product-hover-animation" src="template%20assets%20on%20hover/0.lottie" background="transparent" loop aria-hidden="true"></dotlottie-player></p><div class="about-contact"><a href="mailto:oluomodarataiwo@gmail.com">oluomodarataiwo@gmail.com</a><a href="tel:+2349031415386">+234 903 141 5386</a></div></div>
     </section>
   </main>
 
@@ -141,5 +149,39 @@
     </div>
   </footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <aside class="shimeji-world" id="shimejiWorld" aria-label="Chance, your interactive Shimeji companion">
+    <div class="shimeji-actions" id="shimejiActions" hidden>
+      <p class="shimeji-message" id="shimejiMessage" aria-live="polite">Chance is hanging out.</p>
+      <div class="shimeji-action-list">
+        <button type="button" data-shimeji-action="high-five">High five</button>
+        <button type="button" data-shimeji-action="hop">Hop</button>
+        <button type="button" data-shimeji-action="nap">Take a nap</button>
+        <button type="button" data-shimeji-action="tuck">Tuck away</button>
+      </div>
+      <span class="shimeji-tip">Drag Chance around · click to play</span>
+    </div>
+    <button class="shimeji-character" id="shimejiCharacter" type="button" aria-label="Open Chance's companion controls or drag Chance around" aria-controls="shimejiActions" aria-expanded="false">
+      <img id="shimejiSprite" src="interactable%20shimeji/thumbnail.webp" alt="">
+    </button>
+  </aside>
+  <audio id="siteMusic" src="Verity3D.mp3" loop preload="none"></audio>
+  <button class="music-toggle" id="musicToggle" type="button" aria-pressed="false" aria-label="Turn website music on">
+    <span class="music-toggle-icon" aria-hidden="true">♫</span>
+    <span id="musicToggleLabel">Music off</span>
+  </button>
+  <dialog class="music-consent" id="musicConsent" aria-labelledby="musicConsentTitle" aria-describedby="musicConsentDescription">
+    <p class="eyebrow">A little atmosphere</p>
+    <h2 id="musicConsentTitle">Would you like some music?</h2>
+    <p id="musicConsentDescription">Verity3D can play background music while you browse. You can turn it off at any time.</p>
+    <p class="music-status" id="musicStatus" role="status" aria-live="polite"></p>
+    <div class="music-consent-actions">
+      <button class="button button-dark" id="enableMusic" type="button">Enable music</button>
+      <button class="button button-light" id="skipMusic" type="button">Continue silently</button>
+    </div>
+  </dialog>
+  <div class="custom-cursor" id="customCursor" aria-hidden="true">
+    <span class="custom-cursor-ring"></span>
+    <span class="custom-cursor-dot"></span>
+  </div>
 </body>
 </html>
